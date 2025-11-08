@@ -13,6 +13,7 @@ export default defineConfig({
     user: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASSWORD || 'admin',
     database: process.env.DB_NAME || 'paymentDb',
+    ssl: false,
   },
   verbose: true,
   strict: true,
