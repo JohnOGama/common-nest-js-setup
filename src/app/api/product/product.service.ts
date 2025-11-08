@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { DrizzleDB } from '@/app/db/drizzle.config';
 import { DRIZZLE_ORM } from '@/app/db/drizzle.module';
-import { products, NewProduct } from '@/app/db/schema';
 import { eq } from 'drizzle-orm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { NewProduct, products } from './entities/products.schema';
 
 @Injectable()
 export class ProductService {

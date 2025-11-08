@@ -6,7 +6,7 @@ import {
   AuthGuard,
   AuthModule as BetterAuthModule,
 } from '@thallesp/nestjs-better-auth';
-import { auth } from './app/config/better-auth.config';
+import { auth } from './config/better-auth.config';
 import { APP_GUARD } from '@nestjs/core';
 import { DrizzleModule } from './app/db/drizzle.module';
 

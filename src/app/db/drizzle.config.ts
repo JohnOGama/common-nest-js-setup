@@ -1,6 +1,13 @@
 import { drizzle, PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import * as schema from './schema';
+import * as authSchema from '../api/auth/entities/auth.schema';
+import * as productSchema from '../api/product/entities/products.schema';
+
+// Combine all schemas
+const schema = {
+  ...authSchema,
+  ...productSchema,
+};
 
 // Database connection configuration
 export const dbConfig = {
