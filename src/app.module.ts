@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './app/api/product/product.module';
 import { AuthModule } from './app/api/auth/auth.module';
@@ -22,9 +20,8 @@ import { DrizzleModule } from './app/db/drizzle.module';
     ProductModule,
     AuthModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
