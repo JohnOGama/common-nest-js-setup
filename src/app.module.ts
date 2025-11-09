@@ -6,9 +6,9 @@ import {
   AuthGuard,
   AuthModule as BetterAuthModule,
 } from '@thallesp/nestjs-better-auth';
-import { auth } from './config/better-auth.config';
 import { APP_GUARD } from '@nestjs/core';
-import { DrizzleModule } from './app/db/drizzle.module';
+import { DrizzleModule } from './db/drizzle.module';
+import { createAuthInstance } from './config/better-auth.config';
 
 @Module({
   imports: [
@@ -16,7 +16,12 @@ import { DrizzleModule } from './app/db/drizzle.module';
       isGlobal: true,
     }),
     DrizzleModule,
-    BetterAuthModule.forRoot({ auth }),
+    BetterAuthModule.forRootAsync({
+      useFactory: async () => {
+        const auth = await createAuthInstance();
+        return { auth };
+      },
+    }),
     ProductModule,
     AuthModule,
   ],

@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { db } from './drizzle.config';
+import { createDrizzleInstance } from './drizzle.config';
 
 export const DRIZZLE_ORM = Symbol('DRIZZLE_ORM');
 
@@ -8,7 +8,9 @@ export const DRIZZLE_ORM = Symbol('DRIZZLE_ORM');
   providers: [
     {
       provide: DRIZZLE_ORM,
-      useValue: db,
+      useFactory: async () => {
+        return await createDrizzleInstance();
+      },
     },
   ],
   exports: [DRIZZLE_ORM],
