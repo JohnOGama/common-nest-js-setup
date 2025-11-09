@@ -1,12 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { swaggerConfig } from './config/swagger.config';
+import { ConfigService } from '@nestjs/config';
+import { SwaggerConfig, SwaggerKey } from './config/swagger.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     bodyParser: false,
   });
+
+  // Get ConfigService from the DI container
+  const configService = app.get(ConfigService);
+
+  const swaggerConfig = configService.getOrThrow<SwaggerConfig>(SwaggerKey);
 
   // Global prefix (e.g. /api/v1/{controller})
   app.setGlobalPrefix('api/v1');

@@ -12,12 +12,13 @@ import { createAuthInstance } from './config/better-auth.config';
 import { PaymentsModule } from './app/api/payments/payments.module';
 import { ServicesModule } from './services/services.module';
 import sendGridConfig from './config/send-grid.config';
+import swaggerConfig from './config/swagger.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [sendGridConfig],
+      load: [sendGridConfig, swaggerConfig],
     }),
     DrizzleModule,
     BetterAuthModule.forRootAsync({

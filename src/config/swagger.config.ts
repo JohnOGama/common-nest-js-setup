@@ -1,5 +1,15 @@
-export const swaggerConfig = {
-  title: 'My API',
-  description: 'API documentation for my NestJS app',
-  version: '1.0',
-};
+import { registerAs } from '@nestjs/config';
+
+export const SwaggerKey = 'swaggerKey';
+
+export interface SwaggerConfig {
+  title: string;
+  description: string;
+  version: string;
+}
+
+export default registerAs(SwaggerKey, () => ({
+  title: 'Payment API',
+  description: 'API documentation for payment system',
+  version: '1.0.0',
+}));
