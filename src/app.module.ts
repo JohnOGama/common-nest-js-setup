@@ -10,7 +10,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { DrizzleModule } from './db/drizzle.module';
 import { createAuthInstance } from './config/better-auth.config';
 import { PaymentsModule } from './app/api/payments/payments.module';
-import { EmailModule } from './services/email/email.module';
+import { ServicesModule } from './services/services.module';
 import sendGridConfig from './config/send-grid.config';
 
 @Module({
@@ -29,7 +29,7 @@ import sendGridConfig from './config/send-grid.config';
     ProductModule,
     AuthModule,
     PaymentsModule,
-    EmailModule,
+    ServicesModule,
   ],
   controllers: [],
   providers: [
