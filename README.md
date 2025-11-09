@@ -11,6 +11,8 @@ A NestJS-based backend application with **Drizzle ORM** and **Better Auth** auth
 - **Email Service**: SendGrid
 - **API Documentation**: Swagger/OpenAPI
 - **Language**: TypeScript
+- **Code Quality**: ESLint
+- **Git Hooks**: Husky
 
 ## Project setup
 
@@ -172,6 +174,32 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Code Quality
+
+This project uses **ESLint** for code linting and **Husky** for Git hooks to maintain code quality.
+
+### ESLint
+
+ESLint is configured to enforce code standards and catch potential issues:
+
+```bash
+# Run ESLint to check code
+$ npm run lint
+
+# Auto-fix ESLint issues
+$ npm run lint:fix
+```
+
+### Husky
+
+Husky is configured to run pre-commit and pre-push hooks automatically, ensuring:
+
+- Code is linted before commits
+- Tests pass before pushing
+- Code quality standards are maintained across the team
+
+The Git hooks are automatically installed when you run `npm install`.
 
 ## Deployment
 
