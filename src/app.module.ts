@@ -9,6 +9,7 @@ import {
 import { APP_GUARD } from '@nestjs/core';
 import { DrizzleModule } from './db/drizzle.module';
 import { createAuthInstance } from './config/better-auth.config';
+import { PaymentsModule } from './app/api/payments/payments.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { createAuthInstance } from './config/better-auth.config';
     }),
     ProductModule,
     AuthModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [
