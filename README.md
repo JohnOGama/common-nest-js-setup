@@ -8,6 +8,7 @@ A NestJS-based backend application with **Drizzle ORM** and **Better Auth** auth
 - **Database ORM**: Drizzle ORM
 - **Database**: PostgreSQL
 - **Authentication**: Better Auth
+- **Email Service**: SendGrid
 - **API Documentation**: Swagger/OpenAPI
 - **Language**: TypeScript
 
@@ -37,6 +38,11 @@ PORT=3000
 # Better Auth Configuration
 BETTER_AUTH_SECRET=your-secret-key-here-change-in-production
 BETTER_AUTH_URL=http://localhost:3000
+
+# SendGrid Configuration
+SENDGRID_API_KEY=your-sendgrid-api-key-here
+SENDGRID_FROM_EMAIL=noreply@yourdomain.com
+SENDGRID_FROM_NAME=Your App Name
 ```
 
 ### 3. Setup database
@@ -138,6 +144,21 @@ All product endpoints include full Swagger documentation with:
 - Response schemas with all fields
 - Parameter validation rules
 - HTTP status codes and error responses
+
+### Email Service
+
+The application includes email functionality powered by SendGrid:
+
+- Transactional emails
+- Template-based emails
+- Email notifications
+
+To use the email service:
+
+1. Sign up for a [SendGrid account](https://sendgrid.com)
+2. Create an API key in your SendGrid dashboard
+3. Add the API key and sender email to your `.env` file
+4. Use the `EmailService` in your controllers and services
 
 ## Run tests
 
