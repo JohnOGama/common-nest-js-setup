@@ -10,11 +10,14 @@ import { APP_GUARD } from '@nestjs/core';
 import { DrizzleModule } from './db/drizzle.module';
 import { createAuthInstance } from './config/better-auth.config';
 import { PaymentsModule } from './app/api/payments/payments.module';
+import { EmailModule } from './services/email/email.module';
+import sendGridConfig from './config/send-grid.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [sendGridConfig],
     }),
     DrizzleModule,
     BetterAuthModule.forRootAsync({
@@ -26,6 +29,7 @@ import { PaymentsModule } from './app/api/payments/payments.module';
     ProductModule,
     AuthModule,
     PaymentsModule,
+    EmailModule,
   ],
   controllers: [],
   providers: [
