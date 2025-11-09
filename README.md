@@ -1,6 +1,6 @@
 ## Description
 
-A NestJS-based payment backend application with **Drizzle ORM** and **Better Auth** authentication.
+A NestJS-based backend application with **Drizzle ORM** and **Better Auth** authentication.
 
 ### Tech Stack
 
@@ -8,6 +8,7 @@ A NestJS-based payment backend application with **Drizzle ORM** and **Better Aut
 - **Database ORM**: Drizzle ORM
 - **Database**: PostgreSQL
 - **Authentication**: Better Auth
+- **API Documentation**: Swagger/OpenAPI
 - **Language**: TypeScript
 
 ## Project setup
@@ -82,7 +83,36 @@ $ npm run db:push
 $ npm run db:studio
 ```
 
+## API Documentation
+
+This project includes interactive API documentation powered by **Swagger/OpenAPI**.
+
+### Accessing Swagger UI
+
+Once the application is running, you can access the Swagger documentation at:
+
+```
+http://localhost:3000/api
+```
+
+The Swagger UI provides:
+
+- **Interactive API testing** - Try out endpoints directly in the browser
+- **Request/Response schemas** - View detailed data structures with examples
+- **Authentication flows** - Test protected endpoints
+- **Automatic schema validation** - See required fields and data types
+
+### Features
+
+- Full API endpoint documentation with examples
+- Request and response body schemas with sample values
+- Parameter descriptions and validation rules
+- HTTP status code documentation
+- Try-it-out functionality for testing endpoints
+
 ## API Endpoints
+
+> **Note**: For complete, interactive API documentation with request/response examples, visit the [Swagger UI](#accessing-swagger-ui) at `http://localhost:3000/api`
 
 ### Authentication (Better Auth)
 
@@ -101,6 +131,13 @@ All auth endpoints are available at `/api/auth/*`:
 - `PATCH /product/:id` - Update product
 - `DELETE /product/:id` - Delete product (hard delete)
 - `DELETE /product/:id/soft` - Soft delete product
+
+All product endpoints include full Swagger documentation with:
+
+- Request body examples with sample data
+- Response schemas with all fields
+- Parameter validation rules
+- HTTP status codes and error responses
 
 ## Run tests
 
