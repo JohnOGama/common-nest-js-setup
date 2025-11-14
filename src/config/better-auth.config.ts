@@ -1,22 +1,35 @@
 import { createDrizzleInstance } from '@/db/drizzle.config';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import * as authSchema from '@/app/api/auth/entities/auth.schema';
+import { ConfigService } from '@nestjs/config';
+import { TokenConfig, TokenKey } from './token.config';
 
-export async function createAuthInstance() {
-  const db = await createDrizzleInstance();
+export async function createAuthInstance(configService: ConfigService) {
+  const db = await createDrizzleInstance(configService);
+  const tokenConfig = configService.getOrThrow<TokenConfig>(TokenKey);
 
   return betterAuth({
     database: drizzleAdapter(db, {
       provider: 'pg',
+      schema: authSchema,
     }),
-    basePath: '/api/auth',
-    secret: process.env.BETTER_AUTH_SECRET || 'your-secret-key-here',
-    trustedOrigins: [
-      process.env.BETTER_AUTH_FRONT_END_URL || 'http://localhost:3000',
-    ],
+    basePath: '/api/v1/better-auth',
+    secret: tokenConfig.secretKey,
+    trustedOrigins: tokenConfig.trustedOrigins,
     emailAndPassword: {
       enabled: true,
       autoSignIn: false,
+    },
+    session: {
+      cookieCache: {
+        enabled: true,
+        maxAge: 60 * 60 * 24 * 7,
+      },
+      expiresIn: 60 * 60 * 24 * 7,
+    },
+    advanced: {
+      cookiePrefix: tokenConfig.cookiePrefix,
     },
     socialProviders: {
       // Add your social providers here if needed

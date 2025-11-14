@@ -1,4 +1,5 @@
 import { Global, Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { createDrizzleInstance } from './drizzle.config';
 
 export const DRIZZLE_ORM = Symbol('DRIZZLE_ORM');
@@ -8,8 +9,9 @@ export const DRIZZLE_ORM = Symbol('DRIZZLE_ORM');
   providers: [
     {
       provide: DRIZZLE_ORM,
-      useFactory: async () => {
-        return await createDrizzleInstance();
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        return await createDrizzleInstance(configService);
       },
     },
   ],

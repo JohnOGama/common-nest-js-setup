@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 
-export const SendGridKey = 'sendgrid_key';
+export const SendGridKey = 'sendgridKey';
 
 export interface SendGridConfig {
   key: string;
