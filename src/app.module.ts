@@ -25,9 +25,10 @@ import tokenConfig from './config/token.config';
         const auth = await createAuthInstance(configService);
         return {
           auth,
-          disableGlobalAuthGuard: true,
+          disableTrustedOriginsCors: true,
         };
       },
+      disableGlobalAuthGuard: true,
     }),
     ProductModule,
     AuthModule,

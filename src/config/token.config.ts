@@ -13,5 +13,5 @@ export default registerAs(TokenKey, () => ({
   trustedOrigins: process.env.BETTER_AUTH_FRONT_END_URL?.split(',') || [
     'http://localhost:3000',
   ],
-  cookiePrefix: 'better-auth',
+  cookiePrefix: 'e-commerce',
 }));

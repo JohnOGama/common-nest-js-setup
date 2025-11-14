@@ -4,6 +4,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import * as authSchema from '@/app/api/auth/entities/auth.schema';
 import { ConfigService } from '@nestjs/config';
 import { TokenConfig, TokenKey } from './token.config';
+import { openAPI } from 'better-auth/plugins';
 
 export async function createAuthInstance(configService: ConfigService) {
   const db = await createDrizzleInstance(configService);
@@ -14,9 +15,9 @@ export async function createAuthInstance(configService: ConfigService) {
       provider: 'pg',
       schema: authSchema,
     }),
-    basePath: '/api/v1/better-auth',
     secret: tokenConfig.secretKey,
     trustedOrigins: tokenConfig.trustedOrigins,
+    plugins: [openAPI()],
     emailAndPassword: {
       enabled: true,
       autoSignIn: false,

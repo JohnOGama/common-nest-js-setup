@@ -7,6 +7,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -19,8 +20,10 @@ import {
   ApiBody,
 } from '@nestjs/swagger';
 import { ProductResponseDto } from './dto/product-response.dto';
+import { AuthGuard } from '@thallesp/nestjs-better-auth';
 
 @ApiTags('Products')
+@UseGuards(AuthGuard)
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
