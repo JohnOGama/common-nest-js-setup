@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import {
-  GetObjectAclCommand,
+  GetObjectCommand,
   PutObjectCommand,
   S3Client,
 } from '@aws-sdk/client-s3';
@@ -74,7 +74,7 @@ export class S3Service {
 
   async getPresignedSignedUrl(key) {
     try {
-      const command = new GetObjectAclCommand({
+      const command = new GetObjectCommand({
         Bucket: this.bucketName,
         Key: key,
       });
