@@ -6,10 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "migration:generate": "drizzle-kit generate --config=drizzle.config.ts",
-    "migration:run": "drizzle-kit migrate --config=drizzle.config.ts",
-    "migration:push": "drizzle-kit push --config=drizzle.config.ts",
-    "migration:studio": "drizzle-kit studio --config=drizzle.config.ts",
+    "migration:generate": "drizzle-kit generate",
+    "migration:run": "drizzle-kit migrate",
+    "migration:push": "drizzle-kit push",
+    "migration:studio": "drizzle-kit studio",
     "migration:apply-trigger": "ts-node -r tsconfig-paths/register scripts/apply-trigger.ts",
     "test:notification": "ts-node -r tsconfig-paths/register scripts/test-notification.ts",
     "build": "nest build",
@@ -66,7 +66,7 @@
     "@types/pg": "^8.11.10",
     "@types/supertest": "^6.0.2",
     "cross-env": "^10.1.0",
-    "drizzle-kit": "^0.28.1",
+    "drizzle-kit": "^0.31.7",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
@@ -83,6 +83,9 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
+  },
+  "overrides": {
+    "esbuild": "^0.25.12"
   },
   "lint-staged": {
     "*.ts": [
