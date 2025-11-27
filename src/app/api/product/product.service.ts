@@ -6,10 +6,15 @@ import { NewProduct, products } from './entities/products.schema';
 import { DRIZZLE_ORM } from '@/db/drizzle.module';
 import { DrizzleDB } from '@/db/drizzle.config';
 import { ApiResponseDto } from '@/app/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { PRODUCT_EVENT } from '@/listener/email/product.event';
 
 @Injectable()
 export class ProductService {
-  constructor(@Inject(DRIZZLE_ORM) private readonly db: DrizzleDB) {}
+  constructor(
+    @Inject(DRIZZLE_ORM) private readonly db: DrizzleDB,
+    private eventEmitter: EventEmitter2,
+  ) {}
 
   async create(dto: CreateProductDto) {
     try {
@@ -22,6 +27,11 @@ export class ProductService {
         .insert(products)
         .values(productData)
         .returning();
+
+      this.eventEmitter.emit(PRODUCT_EVENT.CREATED, {
+        product,
+      });
+
       return ApiResponseDto.created('Product successfully created', product);
     } catch (error) {
       return ApiResponseDto.badRequest((error as Error).message);

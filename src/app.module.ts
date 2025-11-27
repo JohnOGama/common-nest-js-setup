@@ -13,9 +13,12 @@ import tokenConfig from './config/token.config';
 import swaggerConfig from './config/swagger.config';
 import s3BucketConfig from './config/s3-bucket.config';
 import { PostgreListenerService } from './listener/postgre-listner.listener';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { EmailListenerService } from './listener/email/product.listener';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [
@@ -43,6 +46,6 @@ import { PostgreListenerService } from './listener/postgre-listner.listener';
     PaymentsModule,
     ServicesModule,
   ],
-  providers: [PostgreListenerService],
+  providers: [PostgreListenerService, EmailListenerService],
 })
 export class AppModule {}
