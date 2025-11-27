@@ -7,7 +7,7 @@ import { DRIZZLE_ORM } from '@/db/drizzle.module';
 import { DrizzleDB } from '@/db/drizzle.config';
 import { ApiResponseDto } from '@/app/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { PRODUCT_EVENT } from '@/listener/email/product.event';
+import { PRODUCT_EVENT } from '@/listener/product/product.event';
 
 @Injectable()
 export class ProductService {
@@ -30,6 +30,7 @@ export class ProductService {
 
       this.eventEmitter.emit(PRODUCT_EVENT.CREATED, {
         product,
+        name: 'test',
       });
 
       return ApiResponseDto.created('Product successfully created', product);

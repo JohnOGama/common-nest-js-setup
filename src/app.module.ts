@@ -14,7 +14,7 @@ import swaggerConfig from './config/swagger.config';
 import s3BucketConfig from './config/s3-bucket.config';
 import { PostgreListenerService } from './listener/postgre-listner.listener';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { EmailListenerService } from './listener/email/product.listener';
+import { EmailListenerService } from './listener/product/product.listener';
 
 @Module({
   imports: [
