@@ -7,9 +7,11 @@
   "license": "UNLICENSED",
   "scripts": {
     "migration:generate": "drizzle-kit generate --config=drizzle.config.ts",
-    "migration:migrate": "drizzle-kit migrate --config=drizzle.config.ts",
+    "migration:run": "drizzle-kit migrate --config=drizzle.config.ts",
     "migration:push": "drizzle-kit push --config=drizzle.config.ts",
     "migration:studio": "drizzle-kit studio --config=drizzle.config.ts",
+    "migration:apply-trigger": "ts-node -r tsconfig-paths/register scripts/apply-trigger.ts",
+    "test:notification": "ts-node -r tsconfig-paths/register scripts/test-notification.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

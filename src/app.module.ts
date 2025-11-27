@@ -12,6 +12,7 @@ import databaseConfig from './config/database.config';
 import tokenConfig from './config/token.config';
 import swaggerConfig from './config/swagger.config';
 import s3BucketConfig from './config/s3-bucket.config';
+import { PostgreListenerService } from './listener/postgre-listner.listener';
 
 @Module({
   imports: [
@@ -42,5 +43,6 @@ import s3BucketConfig from './config/s3-bucket.config';
     PaymentsModule,
     ServicesModule,
   ],
+  providers: [PostgreListenerService],
 })
 export class AppModule {}
