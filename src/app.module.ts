@@ -8,15 +8,22 @@ import { createAuthInstance } from './config/better-auth.config';
 import { PaymentsModule } from './app/api/payments/payments.module';
 import { ServicesModule } from './services/services.module';
 import sendGridConfig from './config/send-grid.config';
-import swaggerConfig from './config/swagger.config';
 import databaseConfig from './config/database.config';
 import tokenConfig from './config/token.config';
+import swaggerConfig from './config/swagger.config';
+import s3BucketConfig from './config/s3-bucket.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [sendGridConfig, swaggerConfig, databaseConfig, tokenConfig],
+      load: [
+        sendGridConfig,
+        swaggerConfig,
+        databaseConfig,
+        tokenConfig,
+        s3BucketConfig,
+      ],
     }),
     DrizzleModule,
     BetterAuthModule.forRootAsync({
