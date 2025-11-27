@@ -8,6 +8,7 @@ import {
   Patch,
   Post,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -21,6 +22,8 @@ import {
 } from '@nestjs/swagger';
 import { ProductResponseDto } from './dto/product-response.dto';
 import { AuthGuard } from '@thallesp/nestjs-better-auth';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { FileUpload } from '@/app/decorators/upload-file.decorator';
 
 @ApiTags('Products')
 @UseGuards(AuthGuard)
@@ -107,5 +110,18 @@ export class ProductController {
   @ApiResponse({ status: 404, description: 'Product not found' })
   softDelete(@Param('id', ParseIntPipe) id: number) {
     return this.productService.softDelete(id);
+  }
+
+  @Post('upload/product-image')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadProductImage(
+    @FileUpload({
+      maxSize: 10 * 1024 * 1024,
+      required: true,
+      fileType: '.(png|jpg|jpeg)',
+    })
+    file: Express.Multer.File,
+  ) {
+    return file;
   }
 }
