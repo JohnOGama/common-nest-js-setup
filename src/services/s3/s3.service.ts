@@ -14,15 +14,15 @@ import { UploadSingleDto } from './dto/upload-single.dto';
 export class S3Service {
   private client: S3Client;
   private bucketName =
-    this.configService.get<S3BucketConfig>(S3BucketKey)?.s3BucketName;
+    this.configService.get<S3BucketConfig>(S3BucketKey)?.s3_bucketName;
 
   constructor(private readonly configService: ConfigService) {
     const region =
-      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3AwsRegion;
+      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3_awsRegion;
     const accessKeyId =
-      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3AccessKey;
+      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3_accessKey;
     const secretAccessKey =
-      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3SecretAccessKey;
+      this.configService.get<S3BucketConfig>(S3BucketKey)?.s3_secretAccessKey;
 
     if (!region || !accessKeyId || !secretAccessKey) {
       throw new Error('S3 configuration is missing');
