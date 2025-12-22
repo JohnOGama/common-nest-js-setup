@@ -12,9 +12,9 @@ import databaseConfig from './config/database.config';
 import tokenConfig from './config/token.config';
 import swaggerConfig from './config/swagger.config';
 import s3BucketConfig from './config/s3-bucket.config';
-import { PostgreListenerService } from './listener/postgre-listner.listener';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EmailListenerService } from './listener/product/product.listener';
+import appConfig from './config/app.config';
 
 @Module({
   imports: [
@@ -27,6 +27,7 @@ import { EmailListenerService } from './listener/product/product.listener';
         databaseConfig,
         tokenConfig,
         s3BucketConfig,
+        appConfig,
       ],
     }),
     DrizzleModule,
@@ -46,6 +47,6 @@ import { EmailListenerService } from './listener/product/product.listener';
     PaymentsModule,
     ServicesModule,
   ],
-  providers: [PostgreListenerService, EmailListenerService],
+  providers: [EmailListenerService],
 })
 export class AppModule {}

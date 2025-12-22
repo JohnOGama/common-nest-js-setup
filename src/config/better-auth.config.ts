@@ -32,8 +32,5 @@ export async function createAuthInstance(configService: ConfigService) {
     advanced: {
       cookiePrefix: tokenConfig.cookiePrefix,
     },
-    socialProviders: {
-      // Add your social providers here if needed
-    },
   });
 }

@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { SwaggerConfig, SwaggerKey } from './config/swagger.config';
 import cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
+import { AppConfig, appKey } from './config/app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -28,6 +29,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   const swaggerConfig = configService.getOrThrow<SwaggerConfig>(SwaggerKey);
+  const appConfig = configService.getOrThrow<AppConfig>(appKey);
 
   // Global prefix (e.g. /api/v1/{controller})
   app.setGlobalPrefix('api/v1');
@@ -44,11 +46,16 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document);
 
   app.enableCors({
-    origin: '*',
+    origin: appConfig.CORS_ORIGIN,
     credentials: true,
   });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(appConfig.PORT ?? 3000);
+
+  console.log(`SERVER PORT: ${appConfig.PORT}`);
+  console.log(`SWAGGER PORT: ${appConfig.PORT}/api/docs`);
+  console.log(`CORS ORIGIN: ${appConfig.CORS_ORIGIN.join(', ')}`);
+  console.log(`NODE ENVIRONMENT: ${appConfig.NODE_ENV}`);
 }
 bootstrap().catch((err) => {
   console.error('Error starting server:', err);

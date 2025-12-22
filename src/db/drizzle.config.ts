@@ -1,4 +1,4 @@
-import { DatabaseConfig, DatabaseKey } from '@/config/database.config';
+import { AppConfig, appKey } from '@/config/app.config';
 import { loadSchemas } from '@/utils';
 import { ConfigService } from '@nestjs/config';
 import { drizzle } from 'drizzle-orm/postgres-js';
@@ -7,9 +7,8 @@ import postgres from 'postgres';
 
 // Create connection string
 export const getConnectionString = (configService: ConfigService) => {
-  const dbConfig = configService.getOrThrow<DatabaseConfig>(DatabaseKey);
-
-  return `postgresql://${dbConfig.username}:${dbConfig.password}@${dbConfig.host}:${dbConfig.port}/${dbConfig.database}`;
+  const appConfig = configService.getOrThrow<AppConfig>(appKey);
+  return appConfig.BASE_URL;
 };
 
 // Factory function for creating drizzle instance with schema
