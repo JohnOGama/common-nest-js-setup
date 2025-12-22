@@ -50,7 +50,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(appConfig.PORT ?? 3000);
+  await app.listen(appConfig.PORT ?? 3001);
 
   console.log(`SERVER PORT: ${appConfig.PORT}`);
   console.log(`SWAGGER PORT: ${appConfig.PORT}/api/docs`);

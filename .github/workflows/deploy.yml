@@ -22,11 +22,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Migration
-        run: npm run migration:run
-        env:
-          NODE_ENV: production
-          NEON_DB_STRING: ${{secrets.NEON_DB_STRING}}
+      # - name: Run Migration
+      #   run: npm run migration:run
+      #   env:
+      #     NODE_ENV: production
+      #     NEON_DB_STRING: ${{secrets.NEON_DB_STRING}}
 
       - name: Deploy to Production
         run: npm run build

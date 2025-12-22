@@ -14,6 +14,7 @@ import swaggerConfig from './config/swagger.config';
 import s3BucketConfig from './config/s3-bucket.config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { EmailListenerService } from './listener/product/product.listener';
+import { HealthModule } from './app/api/health/health.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -46,6 +47,7 @@ import appConfig from './config/app.config';
     AuthModule,
     PaymentsModule,
     ServicesModule,
+    HealthModule,
   ],
   providers: [EmailListenerService],
 })

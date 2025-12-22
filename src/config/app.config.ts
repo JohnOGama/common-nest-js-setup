@@ -16,5 +16,5 @@ export default registerAs(appKey, () => ({
   CORS_ORIGIN: process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',').map((o) => o.trim())
     : [],
-  PORT: parseInt(process.env.PORT ?? '3000'),
+  PORT: parseInt(process.env.PORT ?? '3001'),
 }));
