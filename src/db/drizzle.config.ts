@@ -20,7 +20,7 @@ export async function createDrizzleInstance(configService: ConfigService) {
     max: 10,
     idle_timeout: 20,
     connect_timeout: 10,
-    ssl: false,
+    ssl: true,
   });
 
   return drizzle(client, { schema });
